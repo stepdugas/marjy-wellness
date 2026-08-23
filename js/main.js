@@ -46,7 +46,6 @@ const footerHTML = `
         </div>
         <div class="footer-meta">
             <span>&copy; ${new Date().getFullYear()} Marjy Wellness</span>
-            <span>Made with care</span>
         </div>
     </div>
 </footer>
