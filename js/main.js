@@ -7,17 +7,17 @@ const headerHTML = `
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
     <nav class="nav" aria-label="Primary">
-        <a class="brand" href="/">Marjy Wellness</a>
+        <a class="brand" href="index.html">Marjy Wellness</a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
                 <path d="M3 7h18M3 12h18M3 17h18"/>
             </svg>
         </button>
         <ul id="nav-links" class="nav-links">
-            <li><a href="/" data-nav="home">Home</a></li>
-            <li><a href="/about.html" data-nav="about">About</a></li>
-            <li><a href="/work-with-me.html" data-nav="services">Work With Me</a></li>
-            <li><a href="/contact.html" data-nav="contact">Contact</a></li>
+            <li><a href="index.html" data-nav="home">Home</a></li>
+            <li><a href="about.html" data-nav="about">About</a></li>
+            <li><a href="work-with-me.html" data-nav="services">Work With Me</a></li>
+            <li><a href="contact.html" data-nav="contact">Contact</a></li>
         </ul>
     </nav>
 </header>
@@ -34,14 +34,14 @@ const footerHTML = `
             <div>
                 <h4>Explore</h4>
                 <ul>
-                    <li><a href="/about.html">About Marjy</a></li>
-                    <li><a href="/work-with-me.html">Ways to work together</a></li>
-                    <li><a href="/contact.html">Begin a conversation</a></li>
+                    <li><a href="about.html">About Marjy</a></li>
+                    <li><a href="work-with-me.html">Ways to work together</a></li>
+                    <li><a href="contact.html">Begin a conversation</a></li>
                 </ul>
             </div>
             <div>
                 <h4>Contact</h4>
-                <p><a href="/contact.html">Send a message</a></p>
+                <p><a href="contact.html">Send a message</a></p>
             </div>
         </div>
         <div class="footer-meta">
