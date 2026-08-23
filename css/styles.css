@@ -57,12 +57,30 @@ body {
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 16px;
+    }
 }
 
 img {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+/* Respect iPhone safe areas (notch, home indicator) on landscape */
+@supports (padding: max(0px)) {
+    .container,
+    .container-narrow,
+    .nav {
+        padding-inline: max(var(--page-pad), env(safe-area-inset-left)) max(var(--page-pad), env(safe-area-inset-right));
+    }
 }
 
 a {
@@ -224,6 +242,10 @@ section {
     color: var(--ink-soft);
     padding-block: 0.5rem;
     position: relative;
+    /* Ensure comfortable tap target on touch devices */
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .nav-links a[aria-current="page"] {
@@ -334,6 +356,22 @@ section {
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+/* Less tall on mobile so hero doesn't dominate the viewport */
+@media (max-width: 900px) {
+    .hero-image {
+        aspect-ratio: 3 / 4;
+        max-height: 70vh;
+    }
+    .feature-photo {
+        aspect-ratio: 3 / 4;
+        max-height: 70vh;
+    }
+    .about-photo {
+        aspect-ratio: 3 / 4;
+        max-height: 70vh;
+    }
 }
 
 /* --------------------------------------------------------------------------
@@ -702,13 +740,15 @@ section {
 .field textarea,
 .field select {
     font: inherit;
-    font-size: 1rem;
+    /* 16px prevents iOS Safari from zooming in on focus */
+    font-size: 16px;
     color: var(--ink);
     background: transparent;
     border: 0;
     border-bottom: 1px solid var(--hairline);
     padding: 0.75rem 0;
     border-radius: 0;
+    width: 100%;
     -webkit-appearance: none;
     appearance: none;
     transition: border-color 0.2s ease;
@@ -826,6 +866,7 @@ section {
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--mauve);
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* --------------------------------------------------------------------------
