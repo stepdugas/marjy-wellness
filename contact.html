@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Marjy Wellness</title>
+    <meta name="description" content="Reach out to Marjy to begin a conversation about organizing, craniosacral & polarity therapy, or holistic guidance.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body data-page="contact">
+
+    <div id="site-header-mount"></div>
+
+    <main id="main">
+
+        <section class="container">
+            <div class="contact-grid">
+                <div class="contact-copy">
+                    <p class="eyebrow">Begin</p>
+                    <h1 style="margin-bottom: var(--space-md);">Send Marjy a note.</h1>
+                    <p>Share a little about what brought you here &mdash; the space you&rsquo;d like to reset, the season of life you&rsquo;re in, or what your body has been asking for. Marjy will personally respond within a few days.</p>
+                    <p class="serif-italic" style="color: var(--walnut); font-size: 1.15rem; margin-top: var(--space-md);">Reconnect. Remember. Realign. Resonate.</p>
+                </div>
+
+                <form
+                    class="contact-form"
+                    name="contact"
+                    method="POST"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    action="/contact.html?success=true"
+                >
+                    <input type="hidden" name="form-name" value="contact">
+                    <p class="honeypot">
+                        <label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field"></label>
+                    </p>
+
+                    <div class="field">
+                        <label for="name">Your name</label>
+                        <input id="name" name="name" type="text" autocomplete="name" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" autocomplete="email" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="phone">Phone (optional)</label>
+                        <input id="phone" name="phone" type="tel" autocomplete="tel">
+                    </div>
+
+                    <div class="field">
+                        <label for="interest">What brings you here?</label>
+                        <select id="interest" name="interest">
+                            <option value="">Choose one&hellip;</option>
+                            <option>Professional organizing</option>
+                            <option>Craniosacral &amp; polarity therapy</option>
+                            <option>Holistic guidance</option>
+                            <option>Not sure yet</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+
+                    <div id="form-status" class="form-status" role="status" aria-live="polite">
+                        Thank you &mdash; your message is on its way. Marjy will be in touch soon.
+                    </div>
+
+                    <div>
+                        <button class="btn" type="submit">Send message</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="site-footer-mount"></div>
+
+    <script src="/js/main.js"></script>
+    <script>
+        // Show a friendly confirmation after Netlify redirects back with ?success=true
+        if (new URLSearchParams(window.location.search).get("success") === "true") {
+            const status = document.getElementById("form-status");
+            if (status) {
+                status.classList.add("is-visible");
+                status.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+        }
+    </script>
+</body>
+</html>
