@@ -1,6 +1,6 @@
-# Marjy Wellness
+# Marjy Berkman
 
-Static site for Marjy — professional organizer, craniosacral & polarity therapy practitioner, and holistic guide.
+Static site for Marjy Berkman — professional organizer, craniosacral & polarity therapy practitioner, and holistic guide.
 
 ## Stack
 
@@ -10,7 +10,7 @@ Static site for Marjy — professional organizer, craniosacral & polarity therap
 
 ## Local development
 
-Because pages fetch assets with absolute paths (`/css/styles.css`), open the site via a local server, not `file://`:
+Because pages fetch assets with relative paths, open the site via a local server, not `file://`:
 
 ```bash
 cd ~/Documents/marjy-wellness
@@ -22,14 +22,17 @@ python3 -m http.server 8000
 
 ```
 marjy-wellness/
-├── index.html         # Home
-├── about.html         # About Marjy
-├── work-with-me.html  # Ways to work together (pricing lives here)
-├── contact.html       # Netlify contact form
-├── css/styles.css     # Design system + all page styles
-├── js/main.js         # Header + footer HTML, mobile nav, current-page state
-├── images/            # Photography
-└── partials/          # (reserved — currently unused; header/footer live in js/main.js)
+├── index.html                  # Home
+├── about.html                  # About Marjy
+├── work-with-me.html           # Ways to work together (hub / overview)
+├── organizing.html             # Professional Organizing (full page + pricing)
+├── craniosacral-polarity.html  # Craniosacral & Polarity Therapy
+├── holistic-guidance.html      # Holistic Guidance
+├── contact.html                # Netlify contact form
+├── css/styles.css              # Design system + all page styles
+├── js/main.js                  # Header + footer HTML, mobile nav, dropdown, current-page state
+├── images/                     # Photography
+└── partials/                   # (reserved — currently unused; header/footer live in js/main.js)
 ```
 
 ## Editing the header or footer
@@ -39,5 +42,5 @@ Edit `js/main.js` — the `headerHTML` and `footerHTML` template strings at the 
 ## Deploy
 
 1. Push to GitHub (`stepdugas/marjy-wellness`).
-2. Enable GitHub Pages (Settings → Pages → Deploy from `main` branch).
+2. GitHub Pages serves `main` at https://stepdugas.github.io/marjy-wellness/.
 3. When ready, connect the repo to Netlify for the contact form + custom domain.

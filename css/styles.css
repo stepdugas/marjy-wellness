@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Marjy Wellness — Design System
+   Marjy Berkman — Design System
    Palette pulled from Marjy's "Quiet Luxury" + "Champagne Chic" boards
    ========================================================================== */
 
@@ -276,6 +276,86 @@ section {
     height: 22px;
 }
 
+/* Dropdown parent (Work With Me) --------------------------------------- */
+.has-dropdown {
+    position: relative;
+}
+
+.nav-parent {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: var(--ink-soft);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-toggle svg {
+    width: 10px;
+    height: 7px;
+}
+
+.has-dropdown.is-open .dropdown-toggle {
+    transform: rotate(180deg);
+    color: var(--walnut);
+}
+
+.dropdown-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-width: 721px) {
+    .dropdown-menu {
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 240px;
+        background: var(--ground);
+        border: 1px solid var(--hairline);
+        padding: var(--space-2xs) 0;
+        box-shadow: 0 12px 32px rgba(43, 28, 16, 0.08);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.15s ease, visibility 0.15s ease;
+        z-index: 60;
+    }
+
+    .has-dropdown:hover .dropdown-menu,
+    .has-dropdown:focus-within .dropdown-menu,
+    .has-dropdown.is-open .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .dropdown-menu a {
+        display: block;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        min-height: 0;
+        border-bottom: 0;
+        white-space: nowrap;
+    }
+
+    .dropdown-menu a:hover,
+    .dropdown-menu a:focus-visible {
+        color: var(--walnut);
+        background: var(--ground-warm);
+    }
+}
+
 @media (max-width: 720px) {
     .nav-toggle {
         display: inline-flex;
@@ -303,7 +383,49 @@ section {
         border-bottom: 1px solid var(--hairline);
     }
 
-    .nav-links li:last-child a {
+    .nav-links > li:last-child > a {
+        border-bottom: 0;
+    }
+
+    /* Dropdown behaves like an accordion inside mobile menu */
+    .has-dropdown .nav-parent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--hairline);
+    }
+
+    .has-dropdown .nav-parent a {
+        border-bottom: 0;
+        flex: 1;
+    }
+
+    .dropdown-toggle {
+        width: 44px;
+        height: 44px;
+    }
+
+    .dropdown-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease;
+    }
+
+    .has-dropdown.is-open .dropdown-menu {
+        max-height: 400px;
+    }
+
+    .dropdown-menu a {
+        display: block;
+        padding: 0.75rem 0 0.75rem var(--space-md);
+        font-size: 0.7rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        border-bottom: 1px solid var(--hairline);
+    }
+
+    .dropdown-menu li:last-child a {
         border-bottom: 0;
     }
 }
@@ -331,18 +453,6 @@ section {
 
 .hero-copy .eyebrow {
     margin-bottom: var(--space-md);
-}
-
-.hero-title {
-    margin-bottom: var(--space-md);
-}
-
-.hero-tagline {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
-    color: var(--ink-soft);
-    max-width: 42ch;
 }
 
 .hero-image {
@@ -375,11 +485,19 @@ section {
 }
 
 /* --------------------------------------------------------------------------
-   Mantra / spaced letters block
+   Mantra block — the homepage's poetic anchor (Reconnect · Remember · Realign · Resonate)
    -------------------------------------------------------------------------- */
-.mantra {
+.mantra-block {
     text-align: center;
-    padding-block: var(--space-lg);
+    padding-block: var(--space-2xl);
+    background: var(--ground-warm);
+    max-width: none;
+    padding-inline: var(--page-pad);
+}
+
+.mantra-block > * {
+    max-width: 780px;
+    margin-inline: auto;
 }
 
 .mantra-words {
@@ -392,7 +510,7 @@ section {
     letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--walnut);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
 }
 
 .mantra-words span::before {
@@ -408,43 +526,21 @@ section {
 
 .mantra-copy {
     font-family: var(--font-serif);
-    font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+    font-size: clamp(1.35rem, 2.4vw, 1.9rem);
     line-height: 1.5;
     color: var(--ink);
-    max-width: 32ch;
-    margin-inline: auto;
+    max-width: 34ch;
+    margin: 0 auto var(--space-lg);
     font-style: italic;
 }
 
-/* --------------------------------------------------------------------------
-   Services preview (homepage)
-   -------------------------------------------------------------------------- */
-.services-preview {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-    margin-top: var(--space-lg);
-}
-
-@media (min-width: 800px) {
-    .services-preview {
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--space-md);
-    }
-}
-
-.service-card {
-    padding: var(--space-md) 0;
-    border-top: 1px solid var(--hairline);
-}
-
-.service-card h3 {
-    margin-bottom: var(--space-sm);
-}
-
-.service-card p {
+.mantra-close {
+    font-family: var(--font-serif);
+    font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+    line-height: 1.5;
     color: var(--ink-soft);
-    font-size: 0.96rem;
+    max-width: 32ch;
+    margin: 0 auto;
 }
 
 /* --------------------------------------------------------------------------
@@ -588,6 +684,23 @@ section {
     font-size: 1.05rem;
 }
 
+/* Warm closing pull on About page — mirrors the mantra + testimonial rhythm on the homepage */
+.about-close {
+    background: var(--ground-warm);
+    padding-block: var(--space-2xl);
+    text-align: center;
+    margin-top: var(--space-xl);
+}
+
+.about-close-tagline {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+    color: var(--walnut);
+    max-width: none;
+    margin: 0 0 var(--space-md);
+}
+
 /* --------------------------------------------------------------------------
    Services page
    -------------------------------------------------------------------------- */
@@ -633,25 +746,6 @@ section {
     color: var(--ink-soft);
 }
 
-.tier {
-    padding: var(--space-md) 0;
-    border-top: 1px solid var(--hairline);
-}
-
-.tier:first-of-type {
-    border-top: 0;
-    padding-top: 0;
-}
-
-.tier-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-md);
-    margin-bottom: var(--space-sm);
-    flex-wrap: wrap;
-}
-
 .tier-name {
     font-family: var(--font-serif);
     font-size: 1.4rem;
@@ -673,7 +767,42 @@ section {
     margin-bottom: var(--space-sm);
 }
 
-.tier ul {
+/* Pricing boxes — two side-by-side warm tiles on the Organizing page */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+@media (min-width: 800px) {
+    .pricing-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.pricing-box {
+    background: var(--ground-warm);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing-box-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.pricing-box-desc {
+    color: var(--ink-soft);
+    margin-bottom: var(--space-md);
+}
+
+.pricing-box-list {
     padding-left: 0;
     list-style: none;
     color: var(--ink-soft);
@@ -681,22 +810,27 @@ section {
     margin: 0;
 }
 
-.tier li {
-    padding: 0.35rem 0;
-    border-bottom: 1px dashed var(--hairline);
+.pricing-box-list li {
+    padding: 0.2rem 0;
 }
 
-.tier li:last-child {
-    border-bottom: 0;
-}
-
-.contact-note {
-    padding: var(--space-md);
-    background: var(--ground-warm);
+.pricing-note {
+    max-width: 620px;
+    margin: var(--space-lg) auto 0;
     text-align: center;
     font-family: var(--font-serif);
     font-style: italic;
     color: var(--ink-soft);
+    font-size: 1rem;
+}
+
+.tier-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--mauve);
+    margin-bottom: var(--space-2xs);
+    font-family: var(--font-sans);
 }
 
 /* --------------------------------------------------------------------------
@@ -797,73 +931,16 @@ section {
    Footer
    -------------------------------------------------------------------------- */
 .site-footer {
-    padding-block: var(--space-lg) var(--space-md);
+    padding-block: var(--space-lg);
     border-top: 1px solid var(--hairline);
     margin-top: var(--space-lg);
 }
 
-.footer-inner {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
-    align-items: start;
-    padding-bottom: var(--space-lg);
-}
-
-@media (min-width: 720px) {
-    .footer-inner {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-
-.footer-brand {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1.4rem;
-    color: var(--ink);
-    margin-bottom: var(--space-sm);
-}
-
-.footer-inner h4 {
-    font-family: var(--font-sans);
+.footer-meta {
+    display: flex;
+    justify-content: center;
     font-size: 0.72rem;
     letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--walnut);
-    margin-bottom: var(--space-sm);
-    font-weight: 500;
-}
-
-.footer-inner ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-inner li {
-    padding: 0.25rem 0;
-}
-
-.footer-inner a {
-    color: var(--ink-soft);
-    font-size: 0.95rem;
-}
-
-.footer-inner p {
-    color: var(--ink-soft);
-    font-size: 0.95rem;
-    margin-bottom: 0.4rem;
-}
-
-.footer-meta {
-    padding-top: var(--space-md);
-    border-top: 1px solid var(--hairline);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: var(--space-sm);
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--mauve);
     padding-bottom: env(safe-area-inset-bottom);
@@ -891,3 +968,337 @@ section {
         scroll-behavior: auto !important;
     }
 }
+
+/* --------------------------------------------------------------------------
+   Hero wordmark (name treatment) + Organization Inside and Out
+   Hierarchy: wordmark = display, sub = italic tagline, h1 = supporting lede
+   -------------------------------------------------------------------------- */
+.hero-wordmark {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 6.4vw, 4.75rem);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    margin: 0 0 var(--space-2xs);
+}
+
+.hero-wordmark-sub {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    color: var(--walnut);
+    margin: 0 0 var(--space-md);
+}
+
+/* h1 is subordinate to the wordmark — reads as a lede, not a competing headline */
+.hero-copy h1 {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    line-height: 1.55;
+    letter-spacing: 0;
+    color: var(--ink-soft);
+    max-width: 28ch;
+    margin: 0 0 var(--space-md);
+}
+
+/* --------------------------------------------------------------------------
+   Hero services caption — editorial em-dash markers give the list
+   a consistent left edge so differing line lengths don't feel uneven
+   -------------------------------------------------------------------------- */
+.hero-services {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: var(--space-lg) 0 0;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--walnut);
+    max-width: none;
+}
+
+.hero-services span {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    align-items: baseline;
+    gap: 0.1rem;
+}
+
+.hero-services span::before {
+    content: "—";
+    color: var(--mauve);
+    letter-spacing: 0;
+}
+
+@media (max-width: 640px) {
+    .hero-services {
+        letter-spacing: 0.18em;
+        font-size: 0.68rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Service intro (questions + 4Rs breakdown on sub-pages)
+   -------------------------------------------------------------------------- */
+.service-intro {
+    max-width: 640px;
+    margin: 0 auto var(--space-xl);
+    text-align: center;
+}
+
+.service-intro h1 {
+    margin-bottom: var(--space-md);
+}
+
+.service-lede {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: var(--space-md);
+}
+
+.service-questions {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto var(--space-xl);
+    max-width: 520px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.service-questions li {
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+    color: var(--ink);
+    line-height: 1.4;
+}
+
+.four-rs {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto var(--space-xl);
+    max-width: 560px;
+    display: grid;
+    gap: var(--space-md);
+}
+
+.four-rs li {
+    display: grid;
+    grid-template-columns: minmax(120px, 140px) 1fr;
+    gap: var(--space-md);
+    align-items: baseline;
+}
+
+.four-rs .four-rs-word {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--walnut);
+    letter-spacing: 0.04em;
+}
+
+.four-rs .four-rs-copy {
+    color: var(--ink-soft);
+    font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+    .four-rs li {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+}
+
+.service-body {
+    max-width: 640px;
+    margin: 0 auto;
+    color: var(--ink);
+}
+
+.service-body h2 {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+    font-size: clamp(1.4rem, 2vw, 1.75rem);
+}
+
+.service-body p {
+    font-size: 1.05rem;
+}
+
+.service-hero-photo {
+    aspect-ratio: 4 / 3;
+    max-height: 520px;
+    overflow: hidden;
+    background: var(--champagne);
+    margin-bottom: var(--space-xl);
+}
+
+.service-hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.page-note {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    padding-top: var(--space-md);
+    margin-top: var(--space-lg);
+    border-top: 1px solid var(--hairline);
+    font-size: 1rem;
+}
+
+/* Warm shaded pull moment — for extracting a single strong line from body copy */
+.anchor-pull {
+    background: var(--ground-warm);
+    padding-block: var(--space-2xl);
+    text-align: center;
+}
+
+.anchor-pull p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1.4;
+    color: var(--ink);
+    max-width: 22ch;
+    margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Testimonial section — editorial pull, not a review-card
+   Every element shares the same 560px column so the vertical rhythm is calm.
+   -------------------------------------------------------------------------- */
+.testimonial-section {
+    background: var(--ground-warm);
+    padding-block: var(--space-xl);
+}
+
+.testimonial {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.testimonial .eyebrow {
+    margin-bottom: var(--space-sm);
+}
+
+.testimonial-rule {
+    width: 100%;
+    height: 1px;
+    background: var(--hairline);
+    border: 0;
+    margin: 0 0 var(--space-md);
+}
+
+.testimonial-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0 0 var(--space-md);
+    max-width: none;
+    text-align: left;
+    quotes: "\201C" "\201D";
+}
+
+.testimonial-quote::before {
+    content: open-quote;
+    color: var(--mauve);
+    margin-right: 0.1em;
+}
+
+.testimonial-quote::after {
+    content: close-quote;
+    color: var(--mauve);
+    margin-left: 0.05em;
+}
+
+.testimonial-cite {
+    display: block;
+    font-style: normal;
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--walnut);
+}
+
+/* --------------------------------------------------------------------------
+   Work With Me — service tiles (three evenly-spaced champagne squares)
+   Whole tile is a clickable link; arrow anchors to the bottom.
+   -------------------------------------------------------------------------- */
+.service-tiles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+}
+
+@media (min-width: 800px) {
+    .service-tiles {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.service-tile {
+    background: var(--ground-warm);
+    padding: var(--space-lg);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--ink);
+    transition: background 0.2s ease, transform 0.2s ease;
+    text-align: left;
+}
+
+.service-tile:hover,
+.service-tile:focus-visible {
+    background: var(--champagne);
+    color: var(--ink);
+}
+
+.service-tile h2 {
+    font-size: clamp(1.4rem, 2vw, 1.75rem);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.service-tile p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: var(--space-md) 0 0;
+    max-width: none;
+}
+
+.service-tile-arrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--walnut);
+    align-self: flex-start;
+}
+
+/* On narrow screens the 1:1 aspect makes the tile too tall — let it size to content */
+@media (max-width: 799px) {
+    .service-tile {
+        aspect-ratio: auto;
+        min-height: 200px;
+    }
+}
+
