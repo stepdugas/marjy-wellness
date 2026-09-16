@@ -7,7 +7,10 @@ const headerHTML = `
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
     <nav class="nav" aria-label="Primary">
-        <a class="brand" href="index.html">Marjy Berkman</a>
+        <a class="brand" href="index.html">
+            <span class="brand-name">Marjy Berkman</span>
+            <span class="brand-tagline">Organization Inside and Out</span>
+        </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
                 <path d="M3 7h18M3 12h18M3 17h18"/>
